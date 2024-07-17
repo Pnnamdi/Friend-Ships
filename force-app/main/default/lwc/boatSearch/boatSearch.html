@@ -1,0 +1,49 @@
+<template>
+  <lightning-layout multiple-rows>
+    <!--TOP-->
+    <lightning-layout-item size="12">
+      <lightning-layout>
+        <lightning-card
+          class="slds-col slds-size_12-of-12"
+          title={findABoatLabel}
+        >
+          <!--New Boat Button-->
+          <lightning-button
+            variant="brand"
+            slot="actions"
+            class="slds-var-m-left_x-small"
+            label="New Boat"
+            onclick={createNewBoat}
+          ></lightning-button>
+
+          <!--Search Form Block-->
+          <p class="slds-var-p-horizontal_small">
+            <!--Dropdown component-->
+            <c-boat-search-form onsearch={searchBoats}></c-boat-search-form>
+          </p>
+        </lightning-card>
+      </lightning-layout>
+    </lightning-layout-item>
+
+    <!--BOTTOM-->
+    <lightning-layout-item
+      size="12"
+      class="slds-var-p-top_small slds-is-relative"
+    >
+      <!--Spinner-->
+      <template if:true={isLoading}>
+        <lightning-spinner
+          alternative-text="Loading"
+          variant="brand"
+          size="medium"
+        ></lightning-spinner
+      ></template>
+
+      <!--Result Component-->
+      <c-boat-search-results
+        onloading={handleLoading}
+        ondoneloading={handleDoneLoading}
+      ></c-boat-search-results>
+    </lightning-layout-item>
+  </lightning-layout>
+</template>
